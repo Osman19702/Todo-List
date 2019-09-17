@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <b id="baslik1" class="brand-logo center">Project Name</b>   
+    </div>
+  </nav>
+  <hr />
+  <nav>
+  <div class="nav-wrapper">
+      <a id="baslik2" class="brand-logo center">Done Issues</a>   
+    </div> 
+  </nav>
+
+  </br>
+  <center>
+  <input type="button" id="btn-createfile" value="Save"/>
+  </center>
+
+  <ul id="liste"></ul>
+
+
+  <script>
+    
+    // Filesystem module
+    const fs = require("fs");
+    // Dialogs module
+    const{dialog} = require("electron").remote;
+
+    document.getElementById("btn-createfile").addEventListener("click",() =>{
+
+      let content = document.getElementById("baslik1").innerText+"\n"+document.getElementById("baslik2").innerText+"\n"+document.getElementById("liste").innerText;
+
+      dialog.showSaveDialog((filename) => {
+        if(filename === undefined){
+          console.log("The user clicked the button, but didnt create a file");
+          return;
+        }
+
+        fs.writeFile(filename,content,(err) =>{
+          if(err){
+            console.log("An error occured with the creation of the file" + err.mesage);
+            return;
+          }
+
+          alert("File succesfully created")
+        })
+      })
+
+    }, false);
+
+
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    ipcRenderer.on('item:add', function(e,item){
+      ul.className = 'collection';
+      const li = document.createElement('li');
+      li.className = 'collection-item';
+      const itemText = document.createTextNode(item);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+    });
+    ipcRenderer.on('item:clear', function(){
+      ul.className = '';
+      ul.innerHTML = '';
+    });
+    ul.addEventListener('dblclick', removeItem);
+    function removeItem(e){
+      event.target.remove();
+      if(ul.children.length == 0){
+        ul.className = '';
+      }
+    }
+  </script>
+</body>
+</html>

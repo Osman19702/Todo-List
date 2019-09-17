@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Issues</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body>
+    <form>
+  <div class="form-row">
+        
+        <input type="checkbox" id="item1" name="A isi yapildi" value=rendered-checked >
+        <label for="item1"> Issue A</label>
+
+  <div class="form-row">
+        
+        <input type="checkbox" id="item2" name="B isi yapildi" value=rendered-checked >
+        <label for="item2"> Issue B</label>
+
+  <div class="form-row">
+        
+        <input type="checkbox" id="item3" name="C isi yapildi" value=rendered-checked >
+        <label for="item3"> Issue C</label>
+
+  <div class="form-row">
+        
+        <input type="checkbox" id="item4" name="D isi yapildi" value=rendered-checked >
+        <label for="item4"> Issue D</label>          
+        
+  <div class="form-row">
+        
+        <input type="checkbox" id="item5" name="E isi yapildi" value=js-checked>
+        <label for="item5"> Issue E</label> 
+        
+        <hr />
+        
+          <center>
+          <button class="waves-effect waves-light btn" type="submit">Add</button>
+        </center>
+  </div>
+</form>
+
+  <script>
+
+    
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    document.querySelector('form').addEventListener('submit', submitForm);
+    function submitForm(e){
+      e.preventDefault();
+      if(item1.checked){
+        const item1 = document.querySelector('#item1').name;
+        console.log(ipcRenderer);
+        ipcRenderer.send('item:add',item1);
+      }
+      if(item2.checked){
+        const item2 = document.querySelector('#item2').name;
+        console.log(ipcRenderer);
+        ipcRenderer.send('item:add',item2);
+      }
+      if(item3.checked){
+        const item3 = document.querySelector('#item3').name;
+        console.log(ipcRenderer);
+        ipcRenderer.send('item:add',item3);
+      }
+      if(item4.checked){
+        const item4 = document.querySelector('#item4').name;
+        console.log(ipcRenderer);
+        ipcRenderer.send('item:add',item4);
+      }
+      if(item5.checked){
+        const item5 = document.querySelector('#item5').name;
+        console.log(ipcRenderer);
+        ipcRenderer.send('item:add',item5);
+      }
+
+  
+    }
+
+    
+  </script>
+</body>
+</html>
