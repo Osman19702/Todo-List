@@ -4,7 +4,11 @@ With this desktopp application you can choose the issues that you have done from
 After that you can save the todos to your text file
 
 Requirements;
+
 npm
+
+and
+
 electron
 
 You just need to 
