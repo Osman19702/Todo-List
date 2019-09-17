@@ -5,11 +5,7 @@ After that you can save the todos to your text file
 
 Requirements;
 
-npm
-
-and
-
-electron
+npm and electron
 
 You just need to 
 
