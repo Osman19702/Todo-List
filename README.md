@@ -1,6 +1,6 @@
 # Todo-List
 
-With this desktopp application you can choose the issues that you have done from the default issue screen.
+With this desktop application you can choose the issues that you have done from the default issue screen.
 After that you can save the todos to your text file
 
 Requirements;
