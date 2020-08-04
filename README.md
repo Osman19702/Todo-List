@@ -14,3 +14,5 @@ You just need to
 2-) Build application with (npm install --save electron)
 
 3-) (npm start) for start application
+
+4-) npm run package-win(fow windows) will create desktop application.
